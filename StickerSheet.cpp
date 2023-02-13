@@ -134,21 +134,19 @@ Image StickerSheet::render() const
     // Step 1: Find w and h
     int nx = 0;
     int ny = 0;
-    for (unsigned i = 0; i < _size; i++)
+    int px = _baseImage.width();
+    int py = _baseImage.height();
+
+    for (size_t i = 0; i < _size; i++)
     {
         if (_xCoor[i] < nx)
             nx = _xCoor[i];
         if (_yCoor[i] < ny)
             ny = _yCoor[i];
-    }
 
-    unsigned px = _baseImage.width();
-    unsigned py = _baseImage.height();
-    for (size_t i = 0; i < _size; i++)
-    {
-        if (_xCoor[i] + _images[i]->width() > px)
+        if (_xCoor[i] + (int)_images[i]->width() > px)
             px = _xCoor[i] + _images[i]->width();
-        if (_yCoor[i] + _images[i]->height() > py)
+        if (_yCoor[i] + (int)_images[i]->height() > py)
             py = _yCoor[i] + _images[i]->height();
     }
 

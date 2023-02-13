@@ -164,20 +164,18 @@ void Image::scale(double factor)
         }
     }
 };
-void Image::scale(unsigned ww, unsigned hh)
+void Image::scale(unsigned w, unsigned h)
 {
     Image oriImage = *this;
     double w_ratio, h_ratio;
-    double www = ww;
-    double hhh = hh;
-    w_ratio = www / width();
-    h_ratio = hhh / height();
-    resize(ww, hh);
-    for (unsigned int w = 0; w < ww; w++)
+    w_ratio = double(w) / double(width());
+    h_ratio = double(h) / double(height());
+    resize(w, h);
+    for (int i = 0; i < int(w); w++)
     {
-        for (unsigned int h = 0; h < hh; h++)
+        for (int j = 0; j < int(h); h++)
         {
-            this->getPixel(w, h) = oriImage.getPixel(w / w_ratio, h / h_ratio);
+            this->getPixel(i, j) = oriImage.getPixel(int(w / w_ratio), int(h / h_ratio));
         }
     }
 };
