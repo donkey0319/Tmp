@@ -32,6 +32,9 @@ const StickerSheet &StickerSheet::operator=(const StickerSheet &other)
     if (this == &other)
         return *this;
 
+    _images.clear();
+    _xCoor.clear();
+    _yCoor.clear();
     _baseImage = Image(other._baseImage);
     _max = other._max;
     _size = other._size;
